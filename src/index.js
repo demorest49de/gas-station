@@ -1,5 +1,5 @@
 import './style.css';
-import {Car, PassengerCar, Truck} from "./modules/car.js";
+import {PassengerCar, Truck} from "./modules/car";
 import {Station} from "./modules/gasstation";
 
 const open = document.querySelector('.open');
@@ -49,10 +49,12 @@ const station = new Station([
 ]);
 
 open.addEventListener('click', () => {
-    console.log('Открыто');
+    station.init();
+    console.log(' station: ', station);
     open.remove();
     car.style.display = 'block';
     car.addEventListener('click', () => {
         station.addCarQueue(getTestCar());
     });
 });
+
