@@ -1,4 +1,5 @@
-import {Column} from "./Column";
+//todo remove .js ext everywhere
+import {Column} from "./Column.js";
 
 export class Station {
     constructor(type) {
@@ -17,8 +18,10 @@ export class Station {
         }
         
         setInterval(() => {
+            
+            console.log(' this: ', this);
             this.checkQueueToFilling();
-        }, 2000);
+        }, 3000);
     }
     
     checkQueueToFilling() {
@@ -26,9 +29,10 @@ export class Station {
             for (let i = 0; i < this.queue.length; i++) {
                 for (let j = 0; j < this.filling.length; j++) {
                     if (!this.filling[j].car &&
-                        this.queue[i].typeFuel === this.filling.typeFuel) {
+                        this.queue[i].typeFuel === this.filling.type) {
                         this.filling[j].car = this.queue.splice(i, 1)[0];
                         this.fillingGo(this.filling[j]);
+                        break;
                     }
                 }
             }
@@ -36,10 +40,10 @@ export class Station {
     }
     
     fillingGo(column) {
-        console.log(` log: заправляем${column}`);
+        console.log(` log: заправляем${JSON.stringify(column.car)}`);
     }
     
     addCarQueue(car) {
-    
+        this.queue.push(car);
     }
 }

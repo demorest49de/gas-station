@@ -1,6 +1,8 @@
-import './style.css';
-import {PassengerCar, Truck} from "./modules/car";
-import {Station} from "./modules/gasstation";
+//todo for debugging
+// import './style.css';
+
+import {PassengerCar, Truck} from "./modules/car.js";
+import {Station} from "./modules/gasstation.js";
 
 const open = document.querySelector('.open');
 const car = document.querySelector('.car');
