@@ -7,7 +7,7 @@ export class Car {
         this.nowTank = Math.floor(Math.random() * this.#maxTank);
     }
     
-    getTitle() {
+    get title() {
         return `${this.brand} ${this.model}`;
     }
     
@@ -15,7 +15,7 @@ export class Car {
         this.model = model;
     }
     
-    needFuel() {
+    get needFuel() {
         return this.#maxTank - this.nowTank;
     }
     
