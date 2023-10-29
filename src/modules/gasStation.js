@@ -1,13 +1,16 @@
 //todo remove .js ext everywhere
 import {Column} from "./Column.js";
-
+import {RenderStation} from "./RenderStation.js";
+//39-41
 export class Station {
     #queue = [];
     #filling = [];
     #ready = [];
     
-    constructor(type) {
+    constructor(type, renderApp = null) {
         this.type = type;
+        this.renderApp = renderApp;
+        this.renderStation = null;
     }
     
     //todo инициализация должна быть
