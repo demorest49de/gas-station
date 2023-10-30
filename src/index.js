@@ -29,7 +29,7 @@ const testArray = {
     ],
 };
 
-const getTestCar = () => {
+const getRandomCar = () => {
     const typeBool = Math.random() < 0.6;
     const listCar = typeBool ? testArray.passangerCar : testArray.truck;
     const randomCar = listCar[(Math.floor(Math.random() * listCar.length))];
@@ -41,14 +41,15 @@ const station = new Station([
     {
         type: 'petrol',
         count: 2,
-        speed: 5,
+        speed: 10,
     },
     {
         type: 'diesel',
         count: 1,
-        speed: 10,
-    }
-]);
+        speed: 50,
+    },
+],
+'.app');
 
 open.addEventListener('click', () => {
     station.init();
@@ -56,7 +57,7 @@ open.addEventListener('click', () => {
     open.remove();
     car.style.display = 'block';
     car.addEventListener('click', () => {
-        station.addCarQueue(getTestCar());
+        station.addCarQueue(getRandomCar());
     });
 });
 

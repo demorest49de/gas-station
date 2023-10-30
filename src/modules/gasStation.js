@@ -13,6 +13,14 @@ export class Station {
         this.renderStation = null;
     }
     
+    get filling(){
+        return this.#filling;
+    }
+    
+    get queue(){
+        return this.#queue;
+    }
+    
     //todo инициализация должна быть
     init() {
         for (const option of this.type) {
@@ -21,9 +29,11 @@ export class Station {
             }
         }
         
+        if(this.renderApp){
+            this.renderStation = new RenderStation(this.renderApp, this);
+        }
+        
         setInterval(() => {
-            
-            // console.log(' this: ', this);
             this.checkQueueToFilling();
         }, 3000);
     }
@@ -36,6 +46,7 @@ export class Station {
                         this.#queue[i].typeFuel === this.#filling[j].type) {
                         this.#filling[j].car = this.#queue.splice(i, 1)[0];
                         this.fillingGo(this.#filling[j]);
+                        this.renderStation.renderStation();
                         break;
                     }
                 }
@@ -70,10 +81,12 @@ export class Station {
     
     leaveClient({car, needFuel}) {
         this.#ready.push(car);
-        console.log(`filled ${needFuel} litres total to ${car.title}`);
+        this.renderStation.renderStation();
     }
     
     addCarQueue(car) {
         this.#queue.push(car);
+        console.log(' station: ', this);
+        this.renderStation.renderStation();
     }
 }
