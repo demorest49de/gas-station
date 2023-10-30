@@ -10,19 +10,19 @@ const car = document.querySelector('.car');
 const testArray = {
     passangerCar: [
         ['Opel', 'Crossland', 45],
-        ['Opel', 'Grandland X', 53],
-        ['Mazda', 'cx-5', 55],
-        ['BMW', 'M5', 68],
-        ['BMW', 'X5', 80],
+        ['Opel', 'Grandland X', 53, 'gas'],
+        ['Mazda', 'cx-5', 55, 'gas'],
+        ['BMW', 'M5', 68, 'gas'],
+        ['BMW', 'X5', 80, 'gas'],
         ['BMW', 'X5d', 80, 'diesel'],
         ['BMW', 'X3', 65],
         ['BMW', '5', 66],
     ],
     truck: [
-        ['MAN', 'TGS', 400],
-        ['MAN', 'TGX', 300],
-        ['Mercedes-Benz', 'Actros', 450],
-        ['Mercedes-Benz', 'Actros L', 650],
+        ['MAN', 'TGS', 400, 'gas'],
+        ['MAN', 'TGX', 300, 'gas'],
+        ['Mercedes-Benz', 'Actros', 450, 'gas'],
+        ['Mercedes-Benz', 'Actros L', 650, 'gas'],
         ['Volvo', 'FH16', 700],
         ['Volvo', 'FM', 700],
         ['Volvo', 'FMX', 540],
@@ -40,13 +40,12 @@ const getRandomCar = () => {
 const station = new Station([
     {
         type: 'petrol',
-        count: 2,
-        speed: 10,
     },
     {
         type: 'diesel',
-        count: 1,
-        speed: 50,
+    },
+    {
+        type: 'gas',
     },
 ],
 '.app');

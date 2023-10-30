@@ -1,6 +1,7 @@
 //todo remove .js ext everywhere
 import {Column} from "./Column.js";
 import {RenderStation} from "./RenderStation.js";
+
 //39-41
 export class Station {
     #queue = [];
@@ -13,29 +14,32 @@ export class Station {
         this.renderStation = null;
     }
     
-    get filling(){
+    get filling() {
         return this.#filling;
     }
     
-    get queue(){
+    get queue() {
         return this.#queue;
     }
     
-    //todo инициализация должна быть
     init() {
-        for (const option of this.type) {
-            for (let i = 0; i < option.count; i++) {
-                this.#filling.push(new Column(option.type, option.speed));
-            }
-        }
-        
-        if(this.renderApp){
-            this.renderStation = new RenderStation(this.renderApp, this);
-        }
-        
+        this.addColumnsToFilling();
+        this.createRender();
         setInterval(() => {
             this.checkQueueToFilling();
         }, 3000);
+    }
+    
+    addColumnsToFilling(){
+        for (const option of this.type) {
+            this.#filling.push(new Column(option.type, option.speed));
+        }
+    }
+    
+    createRender(){
+        if (this.renderApp) {
+            this.renderStation = new RenderStation(this.renderApp, this);
+        }
     }
     
     checkQueueToFilling() {
