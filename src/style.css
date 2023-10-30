@@ -40,8 +40,8 @@ ul {
     background-repeat: no-repeat;
     background-size: 48px 48px;
     display: flex;
-    align-items: start;
-    justify-content: end;
+    align-items: flex-start;
+    justify-content: flex-start;
     padding-left: 53px;
     flex-direction: column;
     padding-top: 34px;

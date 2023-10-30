@@ -72,7 +72,7 @@ export class Station {
                 car.nowTank += column.speed;
             }
             if (car.maxTank - car.nowTank) {
-                console.log(`you need fill up ${car.maxTank - car.nowTank} litres more`);
+                console.log(`for ${car.title} you need fill up ${car.maxTank - car.nowTank} litres more`);
             }
             if (car.nowTank >= car.maxTank) {
                 clearInterval(timerId);

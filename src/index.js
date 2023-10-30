@@ -1,5 +1,5 @@
 //todo for debugging
-// import './style.css';
+import './style.css';
 
 import {PassengerCar, Truck} from "./modules/car.js";
 import {Station} from "./modules/gasStation.js";
