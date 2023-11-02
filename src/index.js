@@ -31,24 +31,24 @@ const testArray = {
 
 const getRandomCar = () => {
   const typeBool = Math.random() < 0.6;
+  console.log(' Math.random(): ', Math.random());
   const listCar = typeBool ? testArray.passangerCar : testArray.truck;
   const randomCar = listCar[(Math.floor(Math.random() * listCar.length))];
   return typeBool ? new PassengerCar(...randomCar) : new Truck(...randomCar);
 };
 
-
 const station = new Station([
-    {
-      type: 'petrol',
-    },
-    {
-      type: 'diesel',
-    },
-    {
-      type: 'gas',
-    },
-  ],
-  '.app');
+  {
+    type: 'petrol',
+  },
+  {
+    type: 'diesel',
+  },
+  {
+    type: 'gas',
+  },
+],
+'.app');
 
 open.addEventListener('click', () => {
   station.init();
