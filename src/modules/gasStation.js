@@ -8,9 +8,9 @@ export class Station {
   #filling = [];
   #ready = [];
 
-  constructor(type, renderApp = null) {
-    this.type = type;
-    this.renderApp = renderApp;
+  constructor(type, selectorApp = null) {
+    this.stationFuelType = type;
+    this.selectorApp = selectorApp;
     this.renderStation = null;
   }
 
@@ -31,14 +31,14 @@ export class Station {
   }
 
   addColumnsToFilling() {
-    for (const option of this.type) {
+    for (const option of this.stationFuelType) {
       this.#filling.push(new Column(option.type, option.speed));
     }
   }
 
   createRender() {
-    if (this.renderApp) {
-      this.renderStation = new RenderStation(this.renderApp, this);
+    if (this.selectorApp) {
+      this.renderStation = new RenderStation(this.selectorApp, this);
     }
   }
 
