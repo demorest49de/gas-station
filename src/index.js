@@ -38,17 +38,17 @@ const getRandomCar = () => {
 
 
 const station = new Station([
-  {
-    type: 'petrol',
-  },
-  {
-    type: 'diesel',
-  },
-  {
-    type: 'gas',
-  },
-],
-'.app');
+    {
+      type: 'petrol',
+    },
+    {
+      type: 'diesel',
+    },
+    {
+      type: 'gas',
+    },
+  ],
+  '.app');
 
 open.addEventListener('click', () => {
   station.init();
