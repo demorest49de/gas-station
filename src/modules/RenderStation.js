@@ -1,5 +1,10 @@
-export class RenderStation {
+import {Station} from "./gasStation";
+
+export class RenderStation
+  // extends Station
+{
   constructor(app, station) {
+    // super(type, selectorApp);
     this.app = app;
     this.station = station;
     this.init();
