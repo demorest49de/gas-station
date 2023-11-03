@@ -65,6 +65,7 @@ export class Station {
     console.log(`${car.title} has now ${car.nowTank} litres of ${car.typeFuel}`);
     console.log(`you need to fuel up ${needFuel} litres`);
     console.log(`your column is ${JSON.stringify(column)}`);
+    
     const timerId = setInterval(() => {
       if (car.nowTank + column.speed > car.maxTank) {
         car.nowTank += car.maxTank - car.nowTank;
@@ -74,6 +75,8 @@ export class Station {
       if (car.maxTank - car.nowTank) {
         console.log(`for ${car.title} you need fill up ${car.maxTank - car.nowTank} litres more`);
       }
+      
+      this.renderStation.renderStation();
       if (car.nowTank >= car.maxTank) {
         clearInterval(timerId);
         car.fillUp();

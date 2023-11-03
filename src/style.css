@@ -63,7 +63,7 @@ ul {
 }
 
 .form-input {
-  width: 600px;
+  width: 810px;
   padding: 20px;
   background: #fff;
   box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
@@ -145,4 +145,9 @@ h1 {
 
 .car {
   display: none;
+}
+
+.filling-active{
+  visibility: visible;
+  opacity: 1;
 }

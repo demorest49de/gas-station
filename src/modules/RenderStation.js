@@ -4,7 +4,7 @@ export class RenderStation {
     this.station = station;
     this.init();
   }
-
+  
   init() {
     this.wrapper = document.createElement('div');
     this.wrapper.style.cssText = `
@@ -14,10 +14,10 @@ export class RenderStation {
             align-items: top;
             justify-content: space-between;
         `;
-
+    
     this.renderStation();
   }
-
+  
   renderStation() {
     this.wrapper.textContent = '';
     const queueList = this.createQueue();
@@ -25,7 +25,7 @@ export class RenderStation {
     this.wrapper.append(queueList, columns);
     document.querySelector(this.app).append(this.wrapper);
   }
-
+  
   createQueue() {
     const list = document.createElement('ul');
     this.station.queue.forEach(car => {
@@ -36,22 +36,29 @@ export class RenderStation {
     });
     return list;
   }
-
+  
   createColumns() {
     const columns = document.createElement('ul');
     columns.classList.add('columns');
     this.station.filling.forEach(column => {
       const itemColumn = document.createElement('li');
       itemColumn.classList.add(column.type);
-
+      
       const columnName = document.createElement('p');
       columnName.textContent = column.type;
       itemColumn.append(columnName);
-
+      
       if (column.car) {
-        const itemCar = document.createElement('p');
         const car = column.car;
-
+        const fillProcess = document.createElement('span');
+        fillProcess.textContent = ` filling now... ${car.nowTank} of ${car.maxTank}`;
+      //   fillProcess.style.cssText = `
+      //   visibility: hidden;
+      //   opacity: 0;
+      // `;
+        columnName.append(fillProcess);
+        
+        const itemCar = document.createElement('p');
         itemCar.textContent = car.title;
         itemCar.classList.add(car.typeCar);
         itemColumn.append(itemCar);

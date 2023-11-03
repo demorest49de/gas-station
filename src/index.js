@@ -1,5 +1,5 @@
 // todo for debugging
-import './style.css';
+// import './style.css';
 
 import {PassengerCar, Truck} from './modules/car.js';
 import {Station} from './modules/gasStation.js';
@@ -31,7 +31,6 @@ const testArray = {
 
 const getRandomCar = () => {
   const typeBool = Math.random() < 0.6;
-  console.log(' Math.random(): ', Math.random());
   const listCar = typeBool ? testArray.passangerCar : testArray.truck;
   const randomCar = listCar[(Math.floor(Math.random() * listCar.length))];
   return typeBool ? new PassengerCar(...randomCar) : new Truck(...randomCar);
