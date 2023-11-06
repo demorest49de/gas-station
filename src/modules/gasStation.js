@@ -1,6 +1,5 @@
 // todo remove .js ext everywhere
 import {Column} from './Column.js';
-import {RenderStation} from './RenderStation.js';
 
 // 39-41
 export class Station {
@@ -11,7 +10,7 @@ export class Station {
   constructor(type, selectorApp = null) {
     this.stationFuelType = type;
     this.selectorApp = selectorApp;
-    this.renderStation = null;
+    this.stationRender = null;
   }
 
   get filling() {
@@ -38,7 +37,7 @@ export class Station {
 
   createRender() {
     if (this.selectorApp) {
-      this.renderStation = new RenderStation(this.selectorApp, this);
+      this.stationRender = new RenderStation(this.selectorApp, this);
     }
   }
 
@@ -50,7 +49,7 @@ export class Station {
                         this.#queue[i].typeFuel === this.#filling[j].type) {
             this.#filling[j].car = this.#queue.splice(i, 1)[0];
             this.fillingGo(this.#filling[j]);
-            this.renderStation.renderStation();
+            this.stationRender.renderStation();
             break;
           }
         }
@@ -76,7 +75,7 @@ export class Station {
         console.log(`for ${car.title} you need fill up ${car.maxTank - car.nowTank} litres more`);
       }
       
-      this.renderStation.renderStation();
+      this.stationRender.renderStation();
       if (car.nowTank >= car.maxTank) {
         clearInterval(timerId);
         car.fillUp();
@@ -88,12 +87,85 @@ export class Station {
 
   leaveClient({car, needFuel}) {
     this.#ready.push(car);
-    this.renderStation.renderStation();
+    this.stationRender.renderStation();
   }
 
   addCarQueue(car) {
     this.#queue.push(car);
     console.log(' station: ', this);
-    this.renderStation.renderStation();
+    this.stationRender.renderStation();
   }
 }
+
+export class RenderStation extends Station{
+  constructor(app, station) {
+    super(station.stationFuelType, app);
+    this.app = app;
+    this.station = station;
+    this.init();
+  }
+  
+  init() {
+    this.wrapper = document.createElement('div');
+    this.wrapper.style.cssText = `
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: minmax(100px, 1fr);
+            align-items: top;
+            justify-content: space-between;
+        `;
+    
+    this.renderStation();
+  }
+  
+  renderStation() {
+    this.wrapper.textContent = '';
+    const queueList = this.createQueue();
+    const columns = this.createColumns();
+    this.wrapper.append(queueList, columns);
+    document.querySelector(this.app).append(this.wrapper);
+  }
+  
+  createQueue() {
+    const list = document.createElement('ul');
+    this.station.queue.forEach(car => {
+      const item = document.createElement('li');
+      item.textContent = `${car.title}`;
+      item.classList.add(car.typeCar);
+      list.append(item);
+    });
+    return list;
+  }
+  
+  createColumns() {
+    const columns = document.createElement('ul');
+    columns.classList.add('columns');
+    this.station.filling.forEach(column => {
+      const itemColumn = document.createElement('li');
+      itemColumn.classList.add(column.type);
+      
+      const columnName = document.createElement('p');
+      columnName.textContent = column.type;
+      itemColumn.append(columnName);
+      
+      if (column.car) {
+        const car = column.car;
+        const fillProcess = document.createElement('span');
+        fillProcess.textContent = ` filling now... ${car.nowTank} of ${car.maxTank}`;
+        //   fillProcess.style.cssText = `
+        //   visibility: hidden;
+        //   opacity: 0;
+        // `;
+        columnName.append(fillProcess);
+        
+        const itemCar = document.createElement('p');
+        itemCar.textContent = car.title;
+        itemCar.classList.add(car.typeCar);
+        itemColumn.append(itemCar);
+      }
+      columns.append(itemColumn);
+    });
+    return columns;
+  }
+}
+
