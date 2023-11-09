@@ -38,22 +38,23 @@ const getRandomCar = () => {
 };
 
 const station = new Station([
-  {
-    type: 'petrol',
-  },
-  {
-    type: 'diesel',
-  },
-  {
-    type: 'gas',
-  },
-],
-'.app');
+    {
+      type: 'petrol',
+    },
+    {
+      type: 'diesel',
+    },
+    {
+      type: 'gas',
+    },
+  ],
+  '.app');
 
-new RenderStation(station).renderStation();
+const render = new RenderStation(station);
 
 open.addEventListener('click', () => {
   station.init();
+  render.renderStation();
   open.remove();
   car.style.display = 'block';
   car.addEventListener('click', () => {

@@ -22,7 +22,6 @@ export class Station {
   }
 
   init() {
-    // this.addColumnsToFilling();
     setInterval(() => {
       this.checkQueueToFilling();
     }, 3000);
