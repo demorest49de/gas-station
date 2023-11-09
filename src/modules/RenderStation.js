@@ -20,7 +20,6 @@ export class RenderStation extends Station {
             justify-content: space-between;
         `;
     this.station.addColumnsToFilling();
-    this.renderStation();
   }
   
   renderStation() {
