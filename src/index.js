@@ -1,8 +1,9 @@
 // todo for debugging
-import './style.css';
+// import './style.css';
 
 import {PassengerCar, Truck} from './modules/car.js';
 import {Station} from './modules/gasStation.js';
+import {RenderStation} from "./modules/RenderStation.js";
 
 const open = document.querySelector('.open');
 const car = document.querySelector('.car');
@@ -49,6 +50,8 @@ const station = new Station([
 ],
 '.app');
 
+new RenderStation(station).renderStation();
+
 open.addEventListener('click', () => {
   station.init();
   console.log(' station: ', station);
@@ -58,4 +61,3 @@ open.addEventListener('click', () => {
     station.addCarQueue(getRandomCar());
   });
 });
-
