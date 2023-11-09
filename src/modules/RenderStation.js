@@ -19,7 +19,7 @@ export class RenderStation extends Station {
             align-items: top;
             justify-content: space-between;
         `;
-    
+    this.station.addColumnsToFilling();
     this.renderStation();
   }
   

@@ -54,7 +54,6 @@ new RenderStation(station).renderStation();
 
 open.addEventListener('click', () => {
   station.init();
-  console.log(' station: ', station);
   open.remove();
   car.style.display = 'block';
   car.addEventListener('click', () => {

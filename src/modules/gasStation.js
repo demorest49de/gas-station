@@ -22,7 +22,7 @@ export class Station {
   }
 
   init() {
-    this.addColumnsToFilling();
+    // this.addColumnsToFilling();
     setInterval(() => {
       this.checkQueueToFilling();
     }, 3000);
