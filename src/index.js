@@ -37,7 +37,7 @@ const getRandomCar = () => {
   return typeBool ? new PassengerCar(...randomCar) : new Truck(...randomCar);
 };
 
-const station = new Station([
+const stationWithRender = new RenderStation([
     {
       type: 'petrol',
     },
@@ -50,14 +50,10 @@ const station = new Station([
   ],
   '.app');
 
-const render = new RenderStation(station);
-
 open.addEventListener('click', () => {
-  station.init();
-  render.renderStation();
   open.remove();
   car.style.display = 'block';
   car.addEventListener('click', () => {
-    station.addCarQueue(getRandomCar());
+    stationWithRender.addCarQueue(getRandomCar());
   });
 });
