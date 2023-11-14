@@ -2,6 +2,12 @@ export class Car {
   #maxTank;
 
   constructor(brand, model, maxTank) {
+    const proto =  Object.getPrototypeOf(this);
+    //todo запрет создания Car через проверку прототипа
+    if(proto.constructor === Car){
+      throw new Error("can't initialize object from abstract class");
+    }
+    
     this.#maxTank = maxTank;
     this.brand = brand;
     this.model = model;
@@ -57,5 +63,3 @@ export class Truck extends Car {
     this.typeCar = 'truck';
   }
 }
-
-
